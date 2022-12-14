@@ -73,6 +73,7 @@ const Helper = ({ setClose }) => {
               <span>Good Luck</span>
             </li>
           </ul>
+          <h4>sunilpark1129@gmail.com</h4>
           <h4>Developed by Sunil Park</h4>
           <StyledButton
             style={{ margin: "auto" }}
