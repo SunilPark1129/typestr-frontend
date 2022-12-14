@@ -8,6 +8,8 @@ import { getRank, postRank, deleteRank } from "../../database/db";
 import { totalScore, avgScore, bestScore, worstScore } from "./math";
 import Info from "../Info";
 import Close from "../Close";
+import Loading from "../Loading";
+import ErrorPage from "../ErrorPage";
 
 import styled from "styled-components";
 import { StyledButton } from "../Button.styled";
@@ -55,7 +57,9 @@ const StyledRecordButtonBox = styled.section`
 const Record = ({ score, setCompleted }) => {
   const btnRef = useRef(null);
   const [getData, setData] = useState();
+  const [getStatus, setStatus] = useState(200);
   const [hasLowScore, setLowScore] = useState(false);
+  const [hasSubmited, setSubmited] = useState(false);
   const [result, setResult] = useState({
     title: "",
     lists: score,
@@ -68,8 +72,12 @@ const Record = ({ score, setCompleted }) => {
   /* Request a server to save current score */
   function saveHandler() {
     if (result.title !== "") {
+      setSubmited(true);
       /* Get data from the server */
-      getRank((obj) => setData(obj));
+      getRank(
+        (obj) => setData(obj),
+        (int) => setStatus(int)
+      );
     }
   }
 
@@ -95,7 +103,23 @@ const Record = ({ score, setCompleted }) => {
 
   /* Displays Score Result */
   function displayResult() {
+    /* Server Side Handler */
+    if (getStatus !== 200) {
+      return (
+        <>
+          <ErrorPage status={getStatus} onClick={closeHandler} />
+          <StyledRecordButtonBox>
+            <StyledButton onClick={closeHandler}>CLOSE</StyledButton>
+          </StyledRecordButtonBox>
+        </>
+      );
+    } else if (hasSubmited && getData === undefined) {
+      return <Loading />;
+    }
+
+    /* Client Side Handler */
     if (hasLowScore) {
+      /* When the score is lower than the last rank */
       return (
         <StyledRecordInputBox>
           <h3>Cannot submit the form</h3>
@@ -108,6 +132,7 @@ const Record = ({ score, setCompleted }) => {
         </StyledRecordInputBox>
       );
     } else {
+      /* Asking Input */
       return (
         <StyledRecordInputBox>
           <h3>Score: {result.total} sec</h3>

@@ -20,7 +20,7 @@ export const postRank = (payload) => {
         });
 };
 
-export const getRank = (setData) => {
+export const getRank = (setData, setStatus) => {
     axios
         .get("/api")
         .then((response) => {
@@ -29,8 +29,10 @@ export const getRank = (setData) => {
                 return a.total - b.total;
             });
             setData(data);
+            setStatus(200);
         })
-        .catch(() => {
+        .catch((e) => {
+            setStatus(e.response.status);
             console.log("Error retrieving data");
         });
 };
