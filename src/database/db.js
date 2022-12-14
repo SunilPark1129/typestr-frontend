@@ -1,3 +1,9 @@
+/*
+Request the server.
+
+Sunil Park
+*/
+
 import axios from "axios";
 
 export const postRank = (payload) => {
