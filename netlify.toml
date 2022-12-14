@@ -1,19 +1,4 @@
 [[redirects]]
 from = "/*"
-to = "/index.html"
-status = 200
-
-[[redirects]]
-from = "/api"
-to = "https://typestr-backend-sunilpark1129.onrender.com/api"
-status = 200
-
-[[redirects]]
-from = "/api/save"
-to = "https://typestr-backend-sunilpark1129.onrender.com/api/save"
-status = 200
-
-[[redirects]]
-from = "/api/delete/:id"
-to = "https://typestr-backend-sunilpark1129.onrender.com/api/delete/:id"
+to = "https://typestr-backend-sunilpark1129.onrender.com/:splat"
 status = 200
