@@ -51,8 +51,11 @@ const Helper = ({ setClose }) => {
               <span>English</span>.
             </li>
             <li>
-              You must complete <span>30 alphabets</span> without typos to
-              successfully complete the game.
+              You must complete <span>30 alphabets</span> without no more than{" "}
+              <span> 3 typos </span> to successfully complete the game.
+            </li>
+            <li>
+              Typos have absolutely <span>nothing</span> to do with your score.
             </li>
             <li>
               At the start of the game, <span>record the time</span> from
@@ -65,6 +68,9 @@ const Helper = ({ setClose }) => {
             <li>
               The rankings are up to 10th, and if you are slower than 10th, your
               record will be <span>automatically deleted</span>.
+            </li>
+            <li>
+              <span>Good Luck</span>
             </li>
           </ul>
           <h4>Developed by Sunil Park</h4>

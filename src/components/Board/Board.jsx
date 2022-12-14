@@ -4,7 +4,7 @@ Manages and displays the functions of the game board.
 Sunil Park
 */
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Timer from "./Timer";
 import Record from "./Record";
 
@@ -33,6 +33,11 @@ const StyledBoardScreen = styled.div`
   height: 4rem;
   overflow: hidden;
   background-color: white;
+  transition: 0.2s background-color ease-out;
+
+  &.hasTypo {
+    background-color: ${({ theme }) => theme.colors.dark};
+  }
 `;
 
 const StyledLetterBox = styled.div`
@@ -52,6 +57,10 @@ const StyledLetterBox = styled.div`
     transition-duration: 0.3s, 0.3s, 0.3s;
     transition-delay: 0s, 0.3s, 0.3s;
   }
+`;
+
+const StyledTypo = styled.div`
+  background-color: red;
 `;
 
 const CorrectEffectAnimation = keyframes`
@@ -185,6 +194,8 @@ const Board = ({ setStarted, hasStarted }) => {
   const [inputValue, setInputValue] = useState("");
   const [countLetter, setCountLetter] = useState(0);
   const [hasCompleted, setCompleted] = useState(false);
+  const [isTypo, setTypo] = useState(false);
+  const [countTypo, setCountTypo] = useState(0);
   const [score, setScore] = useState([]);
 
   /* Time Handler Functions */
@@ -231,7 +242,7 @@ const Board = ({ setStarted, hasStarted }) => {
   /* Input Change Handler */
   const onChangeHandler = (e) => {
     const { value } = e.target;
-
+    e.target.value = "";
     /* Game Conditioner */
     if (value.toUpperCase() === randomChars[countLetter]) {
       /* Recording Started */
@@ -241,7 +252,6 @@ const Board = ({ setStarted, hasStarted }) => {
 
       /* AFK Condition */
       if (seconds > 1000) {
-        e.target.value = "";
         return resetStates();
       } else {
         /* Add a time taken into the array */
@@ -250,7 +260,6 @@ const Board = ({ setStarted, hasStarted }) => {
 
       /* Game Completed */
       if (countLetter === LETTER_LENGTH - 1) {
-        e.target.value = "";
         setCompleted(true);
         inputRef.current.blur();
         return resetStates();
@@ -259,14 +268,27 @@ const Board = ({ setStarted, hasStarted }) => {
       /* Continue */
       setCountLetter(countLetter + 1);
       setInputValue(value);
-      e.target.value = "";
     } else {
-      /* Game Overed */
-      e.target.value = "";
-      inputRef.current.blur();
-      return resetStates();
+      /* Letter Typo */
+      if (hasStarted) {
+        setTypo(true);
+        setInputValue(value);
+        if (countTypo === 2) {
+          /* 3 Typos -> Game Over */
+          return resetStates();
+        }
+      }
     }
   };
+
+  useEffect(() => {
+    if (isTypo) {
+      setCountTypo((prev) => prev + 1);
+      setTimeout(() => {
+        setTypo(false);
+      }, 300);
+    }
+  }, [isTypo]);
 
   /* Complete the game => Open Record component */
   function recordScoreModal(score) {
@@ -284,6 +306,7 @@ const Board = ({ setStarted, hasStarted }) => {
     setRandomChars([]);
     setInputValue("");
     setCountLetter(0);
+    setCountTypo(0);
     clearTime();
     setStarted(false);
   }
@@ -291,7 +314,7 @@ const Board = ({ setStarted, hasStarted }) => {
   return (
     <StyledBoard>
       <StyledContent>
-        <StyledBoardScreen>
+        <StyledBoardScreen className={`${isTypo && "hasTypo"}`}>
           <StyledLetterBox
             className={`${hasStarted && "hasStarted"}`}
             style={{ transform: `translateX(${-countLetter * 4 + 4}rem)` }}
