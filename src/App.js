@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+/*
+This page is the client page.
+
+Sunil Park
+*/
+
+import React, { useState } from "react";
+import { ThemeProvider } from "styled-components";
+import { startValue, defaultValue } from "./components/Theme";
+import { GlobalStyles } from "./components/GlobalStyles";
+import { StyledWarpper } from "./components/Wrapper.styled";
+
+import Main from "./components/Page/Main";
 
 function App() {
+  /* Change Theme */
+  // TRUE when the game starts.
+  const [hasStarted, setStarted] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={hasStarted ? startValue : defaultValue}>
+      <GlobalStyles />
+      <StyledWarpper>
+        <Main setStarted={(bool) => setStarted(bool)} hasStarted={hasStarted} />
+      </StyledWarpper>
+    </ThemeProvider>
   );
 }
 
