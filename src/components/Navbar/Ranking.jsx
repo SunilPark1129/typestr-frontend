@@ -42,10 +42,16 @@ const StyledRankingItem = styled.article`
       justify-content: center;
       align-items: center;
       border-radius: 0.2rem;
+      font-weight: 500;
+      font-size: 1rem;
 
       &.ranker {
         background-color: ${({ theme }) => theme.colors.dark};
       }
+    }
+
+    h4 {
+      font-weight: 500;
     }
 
     > p {
@@ -54,6 +60,7 @@ const StyledRankingItem = styled.article`
       border-radius: 0.2rem;
       width: 4.5rem;
       text-align: center;
+      font-size: 0.9rem;
     }
 
     > section {

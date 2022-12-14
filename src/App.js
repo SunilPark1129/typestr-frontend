@@ -7,6 +7,7 @@ Sunil Park
 import React, { useState } from "react";
 import { ThemeProvider } from "styled-components";
 import { startValue, defaultValue } from "./components/Theme";
+import "./font.css";
 import { GlobalStyles } from "./components/GlobalStyles";
 import { StyledWarpper } from "./components/Wrapper.styled";
 
