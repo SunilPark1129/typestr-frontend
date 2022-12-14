@@ -5,7 +5,6 @@ Sunil Park
 */
 
 import axios from "axios";
-const BASE_URL = "https://typestr-backend-sunilpark1129.onrender.com";
 
 export const postRank = (payload) => {
     axios({
