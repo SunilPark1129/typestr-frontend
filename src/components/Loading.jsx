@@ -92,6 +92,7 @@ const StyledLoadingCircleAni = styled.div`
 
 const StyledLoadingText = styled.div`
   padding: 1rem;
+  max-width: 20rem;
 `;
 
 const Loading = () => {
@@ -107,6 +108,9 @@ const Loading = () => {
       <StyledLoadingText>
         <p>Loading . . .</p>
         <p>We are waking up the server.</p>
+        <p>
+          It may take a 30 seconds for the server to wake up, please wait...
+        </p>
       </StyledLoadingText>
     </StyledLoading>
   );
