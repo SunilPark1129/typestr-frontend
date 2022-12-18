@@ -33,6 +33,19 @@ const ErrorPage = ({ status }) => {
         </p>
       </StyledErrorPage>
     );
+  } else if (500 === status) {
+    /* 500 internal server error */
+    return (
+      <StyledErrorPage>
+        <p>
+          Sorry! Something wrong with the SERVER side... Please visit the
+          website after 1-5 min.
+        </p>
+        <p>
+          ERROR CODE - <span>{status}</span>
+        </p>
+      </StyledErrorPage>
+    );
   } else if (500 <= status) {
     /* Server Error */
     return (
