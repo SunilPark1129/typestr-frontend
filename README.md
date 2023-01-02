@@ -1,7 +1,7 @@
 # Cinema Movie
 ![Typestr](https://user-images.githubusercontent.com/106734133/210241512-aa01d2a2-1886-49b1-b09b-30f70897aea0.jpg)
 
-Go to website - [Link](https://sp-typestr.netlify.app)
+Go to website - [Link](https://sp-typestr.netlify.app)<br>
 Go to backend - [Link](https://github.com/SunilPark1129/typestr-backend)
 
 ## Project Description
