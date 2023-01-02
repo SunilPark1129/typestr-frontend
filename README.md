@@ -20,7 +20,7 @@ Go to backend - [Link](https://github.com/SunilPark1129/typestr-backend)
 |Game Start|<img src="https://user-images.githubusercontent.com/106734133/210241834-9f9151e5-cf51-4244-a16c-9601c3e41ea9.jpg" height="300"><br><br>When the user starts the game, all state is initialized and ready to be recorded. When the game starts, the background color changes as a notification that it has started. And I added some other animations at the same time as the background changes.|
 |Recording Animation|<img src="https://user-images.githubusercontent.com/106734133/210241851-5c441aa9-1977-4bbe-acc7-8cef486c816e.jpg"><br><br>As the game progresses, each time the user enters a letter, an animation displays the number of their records.|
 |Typo|<img src="https://user-images.githubusercontent.com/106734133/210241903-81d2dbb4-7d67-4859-b0c3-63c37b1a51f5.jpg"><br><br>If the user inputs incorrectly, the color changes to warn them of their mistake. The game is set to automatically stop when you receive 3 warnings.|
-|Send to database|<img src="https://user-images.githubusercontent.com/106734133/210241919-33777976-5eaa-47e2-b7f3-b8be070a26f6.jpg" height="300"<br><br>Ask for the user's name to send records to the database. If the user's record is faster than the 10th place record, the record is successful, and if it is slow, it is automatically deleted from the record.|
+|Send to database|<img src="https://user-images.githubusercontent.com/106734133/210241919-33777976-5eaa-47e2-b7f3-b8be070a26f6.jpg" height="300"><br><br>Ask for the user's name to send records to the database. If the user's record is faster than the 10th place record, the record is successful, and if it is slow, it is automatically deleted from the record.|
 
 ## Technology Used
 
