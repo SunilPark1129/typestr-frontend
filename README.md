@@ -1,70 +1,47 @@
-# Getting Started with Create React App
+# Cinema Movie
+![Typestr](https://user-images.githubusercontent.com/106734133/210241512-aa01d2a2-1886-49b1-b09b-30f70897aea0.jpg)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Go to website - [Link](https://sp-typestr.netlify.app)
+Go to backend - [Link](https://github.com/SunilPark1129/typestr-backend)
 
-## Available Scripts
+## Project Description
 
-In the project directory, you can run:
+- Typestr, a small game app.
 
-### `npm start`
+## Features
+> Features that I would like to introduce.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+|Feature|Description|
+|:--:|:--|
+|Loading|<img src="https://user-images.githubusercontent.com/106734133/210241703-7204a255-fab0-4f6f-9ebd-0da5df69a2d7.jpg" height="300"><br><br>When requesting something to the server, a loading screen is displayed. At this time, if the server is not used for a long time, it will go to sleep. Display a loading animation to the user while waking up a sleeping server. I put in some error catches when waking up the server. The status number is displayed when a problem is caught to determine whether it is a client or server problem.|
+|Leaderboard|<img src="https://user-images.githubusercontent.com/106734133/210241717-9c43ae22-f0e5-46d9-b57b-f398d02c07b2.jpg" height="300"><br><br>If you press the Ranking List button, you can see the leaderboard where users have left their records before. Displays information by requesting data from a database.|
+|Detail|<img src="https://user-images.githubusercontent.com/106734133/210241732-640d2505-4924-4ab4-b67d-7b8996152b8c.jpg" height="300"><br><br>You can see detailed information by clicking the Details button. As the game progresses, all records are recorded in units of time with setInterval().|
+|Rules|<img src="https://user-images.githubusercontent.com/106734133/210241801-d604a7d0-89f3-4b77-8905-3beb7826f805.jpg" height="300"><br><br>You can check simple rules about this game.|
+|Game Start|<img src="https://user-images.githubusercontent.com/106734133/210241834-9f9151e5-cf51-4244-a16c-9601c3e41ea9.jpg" height="300"><br><br>When the user starts the game, all state is initialized and ready to be recorded. When the game starts, the background color changes as a notification that it has started. And I added some other animations at the same time as the background changes.|
+|Recording Animation|<img src="https://user-images.githubusercontent.com/106734133/210241851-5c441aa9-1977-4bbe-acc7-8cef486c816e.jpg"><br><br>As the game progresses, each time the user enters a letter, an animation displays the number of their records.|
+|Typo|<img src="https://user-images.githubusercontent.com/106734133/210241903-81d2dbb4-7d67-4859-b0c3-63c37b1a51f5.jpg"><br><br>If the user inputs incorrectly, the color changes to warn them of their mistake. The game is set to automatically stop when you receive 3 warnings.|
+|Send to database|<img src="https://user-images.githubusercontent.com/106734133/210241919-33777976-5eaa-47e2-b7f3-b8be070a26f6.jpg" height="300"<br><br>Ask for the user's name to send records to the database. If the user's record is faster than the 10th place record, the record is successful, and if it is slow, it is automatically deleted from the record.|
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Technology Used
 
-### `npm test`
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![Styled Components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white) ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Installation
+1. Clone the repo
+```
+git clone https://github.com/SunilPark1129/typestr-backend.git
+```
+2. Install all dependencies
+```
+npm install
+```
+> Dependencies I have installed :<br>axios<br> react-router-dom<br> styled components<br> font awesome<br> 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. run the website
+```
+npm start
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Project Status
+Completed
