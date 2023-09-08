@@ -31,7 +31,7 @@ Go to backend - [Link](https://github.com/SunilPark1129/typestr-backend)
 ## Installation
 1. Clone the repo
 ```
-git clone https://github.com/SunilPark1129/typestr-backend.git
+git clone https://github.com/SunilPark1129/typestr-frontend.git
 ```
 2. Install all dependencies
 ```
