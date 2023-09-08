@@ -7,6 +7,7 @@ Go to backend - [Link](https://github.com/SunilPark1129/typestr-backend)
 ## Project Description
 
 - A game website that requires users to type the alphabet quickly without typos.
+- Since I'm using a free serverless, it may takes about 1 to 3 minutes to wake up to server to use the record.
 
 ## Features
 > Features that I would like to introduce.
