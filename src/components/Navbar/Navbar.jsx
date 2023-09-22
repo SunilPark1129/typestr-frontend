@@ -23,7 +23,6 @@ import {
 
 const StyledNavbar = styled.header`
   display: flex;
-  margin-left: auto;
   gap: 0.1rem;
 `;
 
@@ -42,7 +41,6 @@ const Navbar = () => {
 
   /* Display Modal */
   const displayTrigger = () => {
-    /* Server Side Handler */
     // Check Error
     if (rankTrigger && getStatus !== 200) {
       return (
@@ -62,14 +60,9 @@ const Navbar = () => {
           </StyledModalContent>
         </StyledModal>
       );
-    } else if (rankTrigger && getData === undefined) {
-      // While waiting the request
-      return <Loading />;
     }
 
-    /* Client Side Handler */
     if (rankTrigger && getData !== undefined) {
-      // Ranking list button
       return (
         <Ranking setClose={(bool) => setRankTrigger(bool)} data={getData} />
       );
@@ -91,10 +84,18 @@ const Navbar = () => {
     }
   }, [rankTrigger]);
 
-  useEffect(() => {}, [getStatus]);
+  useEffect(() => {
+    // to wake up the server when opened this website
+    // it takes around 1 to 3 min.
+    getRank(
+      (obj) => setData(obj),
+      (int) => setStatus(int)
+    );
+  }, []);
 
   return (
     <StyledNavbar>
+      <Loading data={getData} />
       {displayTrigger()}
       <StyledButton
         onClick={() => {

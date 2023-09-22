@@ -4,11 +4,10 @@ This is the space where all pages are displayed in the client app.
 Sunil Park
 */
 
-import React, { useEffect } from "react";
+import React from "react";
 import Board from "../Board/Board";
 import Navbar from "../Navbar/Navbar";
 import styled from "styled-components";
-import { getRank } from "../../database/db";
 
 const StyledMain = styled.main`
   display: flex;
@@ -20,14 +19,6 @@ const StyledMain = styled.main`
 `;
 
 const Main = ({ hasStarted, setStarted }) => {
-  useEffect(() => {
-    // to wake up the server when opened this website
-    // it takes around 1 to 3 min.
-    getRank(
-      () => {},
-      () => {}
-    );
-  }, []);
   return (
     <StyledMain>
       <Navbar />

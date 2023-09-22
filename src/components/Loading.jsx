@@ -4,90 +4,42 @@ When a page is requested from the server, the loading page is displayed while wa
 Sunil Park
 */
 
-import React from "react";
+import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
 
 const StyledLoading = styled.section`
-  position: fixed;
   display: flex;
-  background-color: ${({ theme }) => theme.colors.mild};
-  box-shadow: 0px 5px 10px -5px ${({ theme }) => theme.colors.shadow};
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  margin-right: auto;
+  align-items: center;
   z-index: 99;
-  flex-direction: column;
-  padding: 1rem;
-`;
+  padding: 0 0.2rem;
+  gap: 0.25rem;
 
-const StyledLoadingCircle = styled.div`
-  display: relative;
-  width: 4rem;
-  height: 4rem;
-  margin: auto;
-  display: flex;
+  p {
+    color: #645555;
+    font-size: 0.8rem;
+  }
 `;
 
 const LoadingAnimation = keyframes`
-    0% {        
-        transform: translate(-50%, -50%) rotateZ(0deg) translate3d(0rem, -1rem, 0);
-        width: .5rem;
-        height: .5rem;
-    }
-
-    20% {        
-        width: .5rem;
-        height: .5rem;
-    }
-
-    50% {        
-        transform: translate(-50%, -50%) rotateZ(280deg) translate3d(0rem, -1rem, 0);
-        width: .8rem;
-        height: .8rem;
-    }
-
-    70% {        
-        width: .5rem;
-        height: .5rem;
-    }
-
-    100% {
-        transform: translate(-50%, -50%) rotateZ(360deg) translate3d(0rem, -1rem, 0);
-        width: .5rem;
-        height: .5rem;
-    }
+  0% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: .5;
+  }
 `;
 
-const StyledLoadingCircleAni = styled.div`
-  position: relative;
-  width: 4rem;
-  height: 4rem;
-  margin: auto;
+const StyledLoadingCircle = styled.div`
+  width: 0.5rem;
+  height: 0.5rem;
   border-radius: 50%;
-  perspective: 800px;
+  cursor: pointer;
 
-  span {
-    position: absolute;
-    content: "";
-    left: 50%;
-    top: 50%;
-    width: 0.5rem;
-    height: 0.5rem;
-    border-radius: 50%;
-    background-color: ${({ theme }) => theme.colors.shadow};
-    transform: translate(-50%, -50%) translate3d(0rem, -1rem, 0);
-    animation: 1s ${LoadingAnimation} infinite linear;
-
-    &:nth-of-type(1) {
-      animation-delay: 0s;
-    }
-    &:nth-of-type(2) {
-      animation-delay: -0.2s;
-    }
-    &:nth-of-type(1) {
-      animation-delay: 0.2s;
-    }
-  }
+  animation: 1s ${LoadingAnimation} infinite linear alternate;
 `;
 
 const StyledLoadingText = styled.div`
@@ -95,21 +47,17 @@ const StyledLoadingText = styled.div`
   max-width: 20rem;
 `;
 
-const Loading = () => {
+const Loading = ({ data }) => {
+  const [hasClicked, setHasClicked] = useState(true);
   return (
-    <StyledLoading>
-      <StyledLoadingCircle>
-        <StyledLoadingCircleAni>
-          <span></span>
-          <span></span>
-          <span></span>
-        </StyledLoadingCircleAni>
-      </StyledLoadingCircle>
-      <StyledLoadingText>
-        <p>Loading . . .</p>
-        <p>We are waking up the server.</p>
-        <p>It may take 30 seconds for the server to wake up, please wait...</p>
-      </StyledLoadingText>
+    <StyledLoading title="Using a free tier to request the server may take up to 30 seconds">
+      <StyledLoadingCircle
+        onClick={() => setHasClicked((prev) => !prev)}
+        style={{ backgroundColor: `${data ? "#1518f1" : "#990000"}` }}
+      />
+      {hasClicked ? (
+        <p>{data ? "Server is ready to use" : "Waiting for the server..."}</p>
+      ) : null}
     </StyledLoading>
   );
 };
