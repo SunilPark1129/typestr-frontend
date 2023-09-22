@@ -21,7 +21,7 @@ const StyledMain = styled.main`
 const Main = ({ hasStarted, setStarted }) => {
   return (
     <StyledMain>
-      <Navbar />
+      <Navbar hasStarted={hasStarted} />
       <Board setStarted={(bool) => setStarted(bool)} hasStarted={hasStarted} />
     </StyledMain>
   );

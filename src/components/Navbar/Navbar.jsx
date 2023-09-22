@@ -33,7 +33,7 @@ const StyledRecordButtonBox = styled.section`
   justify-content: center;
 `;
 
-const Navbar = () => {
+const Navbar = ({ hasStarted }) => {
   const [rankTrigger, setRankTrigger] = useState(false);
   const [helperTrigger, setHelperTrigger] = useState(false);
   const [getData, setData] = useState();
@@ -95,7 +95,7 @@ const Navbar = () => {
 
   return (
     <StyledNavbar>
-      <Loading data={getData} />
+      <Loading data={getData} hasStarted={hasStarted} />
       {displayTrigger()}
       <StyledButton
         onClick={() => {

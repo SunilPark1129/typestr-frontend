@@ -4,7 +4,7 @@ When a page is requested from the server, the loading page is displayed while wa
 Sunil Park
 */
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
 
 const StyledLoading = styled.section`
@@ -47,8 +47,13 @@ const StyledLoadingText = styled.div`
   max-width: 20rem;
 `;
 
-const Loading = ({ data }) => {
+const Loading = ({ data, hasStarted }) => {
   const [hasClicked, setHasClicked] = useState(true);
+  useEffect(() => {
+    if (hasStarted) {
+      setHasClicked(false);
+    }
+  }, [hasStarted]);
   return (
     <StyledLoading title="Using a free tier to request the server may take up to 30 seconds">
       <StyledLoadingCircle
