@@ -102,6 +102,8 @@ const Navbar = ({ hasStarted }) => {
           setRankTrigger(!rankTrigger);
           setHelperTrigger(false);
         }}
+        disabled={getData ? false : true}
+        title={getData ? "" : "currently, waiting for the server response"}
       >
         <FontAwesomeIcon icon={faRankingStar} />
       </StyledButton>

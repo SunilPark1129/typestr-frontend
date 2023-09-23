@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledButton = styled.button `
+export const StyledButton = styled.button`
   outline: none;
   border: none;
   border-radius: 0.2rem;
@@ -14,5 +14,10 @@ export const StyledButton = styled.button `
 
   &:hover {
     background-color: #eeaeae;
+  }
+
+  &:disabled {
+    cursor: default;
+    background-color: ${({ theme }) => theme.colors.main};
   }
 `;
