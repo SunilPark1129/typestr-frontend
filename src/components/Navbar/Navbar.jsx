@@ -37,7 +37,8 @@ const Navbar = ({ hasStarted }) => {
   const [rankTrigger, setRankTrigger] = useState(false);
   const [helperTrigger, setHelperTrigger] = useState(false);
   const [getData, setData] = useState();
-  const [getStatus, setStatus] = useState(200);
+  const [getStatus, setStatus] = useState(null);
+  const [requestCount, setRequestCount] = useState(0);
 
   /* Display Modal */
   const displayTrigger = () => {
@@ -74,7 +75,7 @@ const Navbar = ({ hasStarted }) => {
     }
   };
 
-  /* Request server to get datas */
+  /* request new data */
   useEffect(() => {
     if (rankTrigger) {
       getRank(
@@ -84,14 +85,28 @@ const Navbar = ({ hasStarted }) => {
     }
   }, [rankTrigger]);
 
+  /*
+    wake up the server
+    this may takes up to 1 to 3 min because of free tier
+  */
   useEffect(() => {
-    // to wake up the server when opened this website
-    // it takes around 1 to 3 min.
-    getRank(
-      (obj) => setData(obj),
-      (int) => setStatus(int)
-    );
-  }, []);
+    if (requestCount > 0 && requestCount < 5) {
+      console.log("countered:", requestCount);
+      getRank(
+        (obj) => setData(obj),
+        (int) => setStatus(int)
+      );
+    }
+  }, [requestCount]);
+
+  // request server again when status is not 200
+  useEffect(() => {
+    if (getStatus !== 200) {
+      console.log("getstatus:", requestCount);
+      console.log("status is not 200:", getStatus);
+      setRequestCount(requestCount + 1);
+    }
+  }, [getStatus]);
 
   return (
     <StyledNavbar>
