@@ -16,6 +16,7 @@ const StyledLoading = styled.section`
   gap: 0.25rem;
 
   p {
+    user-select: none;
     color: #645555;
     font-size: 0.8rem;
   }
