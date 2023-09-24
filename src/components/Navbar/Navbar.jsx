@@ -85,7 +85,7 @@ const Navbar = ({ hasStarted }) => {
     }
   };
 
-  /* request new data */
+  /* request a new data whenever the user opens the rank history button */
   useEffect(() => {
     if (rankTrigger) {
       getRank(
@@ -109,7 +109,11 @@ const Navbar = ({ hasStarted }) => {
     }
   }, [requestCount]);
 
-  // request server again when status is not 200
+  /*
+    when mounted, try to request server again when status is not 200.
+    it repeats until requestCount is 5.
+    purpose: reconntect the server because it might has a server issue.
+  */
   useEffect(() => {
     if (getStatus !== 200) {
       console.log("getstatus:", requestCount);

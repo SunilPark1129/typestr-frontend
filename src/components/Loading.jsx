@@ -43,18 +43,16 @@ const StyledLoadingCircle = styled.div`
   animation: 1s ${LoadingAnimation} infinite linear alternate;
 `;
 
-const StyledLoadingText = styled.div`
-  padding: 1rem;
-  max-width: 20rem;
-`;
-
 const Loading = ({ data, hasStarted }) => {
   const [hasClicked, setHasClicked] = useState(true);
+
+  // if game has started, disapear loading text
   useEffect(() => {
     if (hasStarted) {
       setHasClicked(false);
     }
   }, [hasStarted]);
+
   return (
     <StyledLoading title="Using a free tier to request the server may take up to 30 seconds">
       <StyledLoadingCircle
