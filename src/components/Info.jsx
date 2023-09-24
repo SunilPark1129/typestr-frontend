@@ -7,18 +7,40 @@ Sunil Park
 import React, { useState } from "react";
 import styled from "styled-components";
 import { StyledButton } from "./Button.styled";
+import Close from "./Close";
 
-const StyledInfo = styled.section`
-  margin: auto;
-`;
+const StyledInfo = styled.div``;
 
-const StyledInfoContent = styled.main`
+const StyledInfoContent = styled.div`
+  width: 100%;
+  background-color: #f1f1f1;
+  border-radius: 4px;
+  padding: 2rem 1rem;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+  box-shadow: 0px 5px 10px -5px ${({ theme }) => theme.colors.shadow};
+  z-index: 9;
+  overflow: auto;
+  max-height: 30rem;
+
+  > .detail {
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  > .user {
+    width: 100%;
+    text-align: center;
+  }
 `;
 
-const StyledInfoList = styled.article`
+const StyledInfoList = styled.div`
   display: flex;
   width: 100%;
   gap: 0.5rem;
@@ -33,37 +55,39 @@ const StyledInfoList = styled.article`
     width: 4rem;
     text-align: center;
     padding: 0.5rem;
-    box-shadow: 0px 5px 10px -5px ${({ theme }) => theme.colors.shadow};
-    background-color: ${({ theme }) => theme.colors.mild};
+    border: 1px solid ${({ theme }) => theme.colors.shadow};
+    background-color: #f1f1f1;
     border-radius: 0.5rem;
   }
 `;
 
-const StyledInfoResult = styled.article`
+const StyledInfoResult = styled.div`
   flex: 1 1 30%;
   text-align: center;
   padding: 0.5rem;
-  box-shadow: 0px 5px 10px -5px ${({ theme }) => theme.colors.shadow};
   background-color: ${({ theme }) => theme.colors.main};
   border-radius: 0.5rem;
+  border: 1px solid ${({ theme }) => theme.colors.shadow};
 `;
 
 const Info = (props) => {
-  // if TRUE => displays the scores.
   const [displayList, setDisplayList] = useState(false);
 
   function getDisplay() {
     if (displayList) {
       return (
         <StyledInfoContent>
-          {Object.values(props).map((list, idx) => {
+          <div className="detail">DETAIL</div>
+          <div className="user">{props.result.title}</div>
+          <Close setClose={(bool) => setDisplayList(bool)} />
+          {Object.values(props).map((result, idx) => {
             if (idx === 0) {
               return (
                 <StyledInfoList key={idx}>
-                  {list.map((item, idx) => {
+                  {result.lists.map((item, idx) => {
                     return (
                       <div key={idx}>
-                        <h4>{idx + 1}</h4>
+                        <p>{idx + 1}</p>
                         <p>{item}</p>
                       </div>
                     );
@@ -73,8 +97,8 @@ const Info = (props) => {
             } else {
               return (
                 <StyledInfoResult key={idx}>
-                  <h4>{list[0]}</h4>
-                  <p>{list[1]}</p>
+                  <p>{result[0]}</p>
+                  <p>{result[1]}</p>
                 </StyledInfoResult>
               );
             }

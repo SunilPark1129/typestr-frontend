@@ -22,12 +22,6 @@ const StyledClose = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  transition: 0.3s background-color ease-in-out;
-  background-color: ${({ theme }) => theme.colors.light};
-
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.dark};
-  }
 `;
 
 const Close = ({ setClose }) => {

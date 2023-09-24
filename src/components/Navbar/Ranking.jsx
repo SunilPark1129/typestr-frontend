@@ -21,50 +21,45 @@ const StyledRanking = styled.section`
 const StyledRankingItem = styled.article`
   display: flex;
   gap: 0.5rem;
-  flex-direction: column;
-  border-bottom: 1px dashed ${({ theme }) => theme.colors.shadow};
+  border-bottom: 2px dashed #a8a8a8;
   padding: 1rem 0;
+  align-items: center;
   &:nth-last-child(1) {
     border-bottom: none;
   }
 
-  > div {
-    justify-content: space-between;
-    gap: 1rem;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
+  h4 {
+    font-weight: 500;
+  }
 
-    > h3 {
+  > div {
+    &.ranking {
+      width: 1.5rem;
+      height: 1.5rem;
       display: flex;
-      width: 2rem;
-      height: 2rem;
       justify-content: center;
       align-items: center;
-      border-radius: 0.2rem;
-      font-weight: 500;
-      font-size: 1rem;
-
-      &.ranker {
-        background-color: ${({ theme }) => theme.colors.dark};
+      border-radius: 4px;
+    }
+    &.score {
+      margin-left: auto;
+    }
+  }
+  &.ranker {
+    &:nth-of-type(1) {
+      .ranking {
+        background-color: #f57575;
       }
     }
-
-    h4 {
-      font-weight: 500;
+    &:nth-of-type(2) {
+      .ranking {
+        background-color: #9494f3;
+      }
     }
-
-    > p {
-      outline: 1px solid ${({ theme }) => theme.colors.dark};
-      padding: 0.1rem;
-      border-radius: 0.2rem;
-      width: 4.5rem;
-      text-align: center;
-      font-size: 0.9rem;
-    }
-
-    > section {
-      margin: 0;
+    &:nth-of-type(3) {
+      .ranking {
+        background-color: #6bdd6b;
+      }
     }
   }
 `;
@@ -75,21 +70,17 @@ const Ranking = ({ setClose, data }) => {
       <StyledRanking>
         {data.map((result, idx) => {
           return (
-            <StyledRankingItem key={idx}>
-              <div>
-                <h3 className={`${idx < 3 && "ranker"}`}>{idx + 1}</h3>
-                <h4>{result.title}</h4>
-                <p>{result.total} sec</p>
-              </div>
-              <div>
-                <Info
-                  key={idx}
-                  lists={result.lists}
-                  avg={["Avg", result.avg]}
-                  best={["Best", result.best]}
-                  worst={["Worst", result.worst]}
-                />
-              </div>
+            <StyledRankingItem key={idx} className={`${idx < 3 && "ranker"}`}>
+              <div className="ranking">{idx + 1}</div>
+              <h4>{result.title}</h4>
+              <div className="score"> {result.total} sec</div>
+              <Info
+                key={idx}
+                result={result}
+                avg={["Avg", result.avg]}
+                best={["Best", result.best]}
+                worst={["Worst", result.worst]}
+              />
             </StyledRankingItem>
           );
         })}
