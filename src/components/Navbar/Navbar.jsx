@@ -33,6 +33,16 @@ const StyledRecordButtonBox = styled.section`
   justify-content: center;
 `;
 
+const StyledBgClr = styled.div`
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: #bdbdbdb0;
+  cursor: pointer;
+`;
+
 const Navbar = ({ hasStarted }) => {
   const [rankTrigger, setRankTrigger] = useState(false);
   const [helperTrigger, setHelperTrigger] = useState(false);
@@ -130,6 +140,13 @@ const Navbar = ({ hasStarted }) => {
       >
         <FontAwesomeIcon icon={faCircleQuestion} />
       </StyledButton>
+      <StyledBgClr
+        style={{ display: rankTrigger || helperTrigger ? "block" : "none" }}
+        onClick={() => {
+          setHelperTrigger(false);
+          setRankTrigger(false);
+        }}
+      />
     </StyledNavbar>
   );
 };
