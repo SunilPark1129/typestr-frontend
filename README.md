@@ -21,7 +21,7 @@ Go to backend - [Link](https://github.com/SunilPark1129/typestr-backend)
 |Leaderboard|<img src="https://github.com/SunilPark1129/typestr-frontend/assets/106734133/720bf2e3-0aa4-45b9-b41e-c9002da194e8" height="300"><br><br>If you press the Ranking List button, you can see the leaderboard where users have left their records before. Displays information by requesting data from a database.|
 |Detail|<img src="https://github.com/SunilPark1129/typestr-frontend/assets/106734133/621e01a0-bef1-4e65-9312-38237cf7e0fc" height="300"><br><br>You can see detailed information by clicking the Details button. As the game progresses, all records are recorded in units of time with setInterval().|
 |Rules|<img src="https://user-images.githubusercontent.com/106734133/210241801-d604a7d0-89f3-4b77-8905-3beb7826f805.jpg" height="300"><br><br>You can check simple rules about this game.|
-|POST|<img src="https://user-images.githubusercontent.com/106734133/210241919-33777976-5eaa-47e2-b7f3-b8be070a26f6.jpg" height="300"><br><br>Ask for the user's name to send records to the database. If the user's record is faster than the 10th place record, the record is successful, and if it is slow, it is automatically deleted from the record.|
+|POST|<img src="https://user-images.githubusercontent.com/106734133/210241919-33777976-5eaa-47e2-b7f3-b8be070a26f6.jpg" height="300"><br><br>Asks for the user's name to send records to the database. If the user's record is within the top 10 places, the user will be recorded in the database. Anything after top 10 will automatically be deleted from the database.|
 
 ## Technology Used
 
