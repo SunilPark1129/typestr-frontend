@@ -101,7 +101,6 @@ const Navbar = ({ hasStarted }) => {
   */
   useEffect(() => {
     if (requestCount > 0 && requestCount < 5) {
-      console.log("countered:", requestCount);
       getRank(
         (obj) => setData(obj),
         (int) => setStatus(int)
@@ -116,8 +115,6 @@ const Navbar = ({ hasStarted }) => {
   */
   useEffect(() => {
     if (getStatus !== 200) {
-      console.log("getstatus:", requestCount);
-      console.log("status is not 200:", getStatus);
       setRequestCount(requestCount + 1);
     }
   }, [getStatus]);

@@ -24,6 +24,7 @@ const StyledRecordInputBox = styled.div`
   box-shadow: 0px 5px 10px -5px ${({ theme }) => theme.colors.shadow};
   border-radius: 0.5rem;
   padding: 1rem;
+  justify-content: center;
 
   h3 {
     font-size: 1rem;
@@ -137,7 +138,7 @@ const Record = ({ score, setCompleted }) => {
         <StyledRecordInputBox>
           <h3>Score: {result.total} sec</h3>
           <Info
-            lists={result.lists}
+            result={result}
             avg={["Avg", result.avg]}
             best={["Best", result.best]}
             worst={["Worst", result.worst]}
