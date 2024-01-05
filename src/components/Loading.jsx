@@ -54,13 +54,13 @@ const Loading = ({ data, hasStarted }) => {
   }, [hasStarted]);
 
   return (
-    <StyledLoading title="Using a free tier to request the server may take up to 30 seconds">
+    <StyledLoading title="Since we are using a free server, it is currently in a sleep state. We are in the process of waking up the server. Please wait a moment.">
       <StyledLoadingCircle
         onClick={() => setHasClicked((prev) => !prev)}
         style={{ backgroundColor: `${data ? "#1518f1" : "#990000"}` }}
       />
       {hasClicked ? (
-        <p>{data ? "Server is ready to use" : "Waiting for the server..."}</p>
+        <p>{data ? "Server is ready to use" : "Connecting to the server..."}</p>
       ) : null}
     </StyledLoading>
   );

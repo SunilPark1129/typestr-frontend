@@ -43,12 +43,12 @@ const StyledBgClr = styled.div`
   cursor: pointer;
 `;
 
+let timer = null;
 const Navbar = ({ hasStarted }) => {
   const [rankTrigger, setRankTrigger] = useState(false);
   const [helperTrigger, setHelperTrigger] = useState(false);
   const [getData, setData] = useState();
   const [getStatus, setStatus] = useState(null);
-  const [requestCount, setRequestCount] = useState(0);
 
   /* Display Modal */
   const displayTrigger = () => {
@@ -85,7 +85,15 @@ const Navbar = ({ hasStarted }) => {
     }
   };
 
-  /* request a new data whenever the user opens the rank history button */
+  /* immediately request server when page is loaded */
+  useEffect(() => {
+    getRank(
+      (obj) => setData(obj),
+      (int) => setStatus(int)
+    );
+  }, []);
+
+  /* request a fresh data from the server */
   useEffect(() => {
     if (rankTrigger) {
       getRank(
@@ -95,28 +103,29 @@ const Navbar = ({ hasStarted }) => {
     }
   }, [rankTrigger]);
 
-  /*
-    wake up the server
-    this may takes up to 1 to 3 min because of free tier
-  */
-  useEffect(() => {
-    if (requestCount > 0 && requestCount < 5) {
-      getRank(
-        (obj) => setData(obj),
-        (int) => setStatus(int)
-      );
-    }
-  }, [requestCount]);
-
-  /*
-    when mounted, try to request server again when status is not 200.
-    it repeats until requestCount is 5.
-    purpose: reconntect the server because it might has a server issue.
+  /* 
+  when failed to connect to the server
+  wake up the server every 20sec until server status is 200 
+  
+  because this project is using a free tier server
+  server will go back to sleep when nobody is requesting the server in 15min 
   */
   useEffect(() => {
     if (getStatus !== 200) {
-      setRequestCount(requestCount + 1);
+      timer = setInterval(() => {
+        console.log("progress: waking up the server...");
+        getRank(
+          (obj) => setData(obj),
+          (int) => setStatus(int)
+        );
+      }, 20000);
+    } else {
+      console.log("progress: server is ready to use");
+      clearTimeout(timer);
     }
+    return () => {
+      clearTimeout(timer);
+    };
   }, [getStatus]);
 
   return (
