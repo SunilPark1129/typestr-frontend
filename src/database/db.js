@@ -8,7 +8,7 @@ import axios from "axios";
 
 export const postRank = (payload) => {
   axios({
-    url: "/openai/save",
+    url: "/api/save",
     method: "POST",
     data: payload,
   })
@@ -22,7 +22,7 @@ export const postRank = (payload) => {
 
 export const getRank = (setData, setStatus) => {
   axios
-    .get("/openai")
+    .get("/api")
     .then((response) => {
       const data = response.data;
       data.sort((a, b) => {
@@ -39,7 +39,7 @@ export const getRank = (setData, setStatus) => {
 
 export const deleteRank = (id) => {
   axios
-    .delete(`/openai/delete/${id}`)
+    .delete(`/api/delete/${id}`)
     .then(() => {
       console.log("Data has been deleted");
     })
